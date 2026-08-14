@@ -1,0 +1,392 @@
+/* ══════════════════════════════════════════════════════════════
+   django-unfold-rtl — RTL / Persian overrides for Unfold admin
+   ──────────────────────────────────────────────────────────────
+   Every rule is scoped to html[dir="rtl"], so LTR/English keeps
+   Unfold's stock layout untouched. Sections, in order:
+     1. Base direction & typography
+     2. Theme color
+     3. Logical margin/padding mirroring (Unfold is authored LTR)
+     4. Sidebar & navigation
+     5. Dashboard
+     6. Tables & changelist
+     7. Form fields & widgets
+     8. Inlines (sortable / collapsible)
+     9. Buttons & icons
+    10. Misc chrome (breadcrumb, tabs, accent bar)
+   ══════════════════════════════════════════════════════════════ */
+
+@import url('fonts.css');
+
+
+/* ══════════════════════════════════════════════════════════════
+   1. BASE DIRECTION & TYPOGRAPHY
+   ══════════════════════════════════════════════════════════════ */
+
+/* Flip document direction and default text alignment. */
+html[dir="rtl"],
+html[dir="rtl"] body {
+    direction: rtl !important;
+    text-align: right !important;
+}
+
+/* Use Vazirmatn everywhere in RTL — but never on the icon font, which must
+   keep its own family to render glyphs instead of literal ligature names. */
+html[dir="rtl"] * :not(.material-symbols-outlined) {
+    font-family: 'Vazirmatn', ui-sans-serif, system-ui, -apple-system, sans-serif !important;
+}
+
+/* Keep Material Symbols LTR and on their own font (applies in both directions). */
+.material-symbols-outlined {
+    font-family: 'Material Symbols Outlined' !important;
+    direction: ltr !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   2. THEME COLOR
+   ══════════════════════════════════════════════════════════════ */
+
+/* Pin the primary-500 token to the purple palette shipped by this package. */
+:root {
+    --color-primary-500: 168 85 247 !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   3. LOGICAL MARGIN / PADDING MIRRORING
+   Unfold is authored LTR and leans on physical ml-* / mr-* utilities
+   for icon and control gaps. Left unflipped, those gaps land on the
+   wrong side in RTL and controls crowd their text. Mirror them here.
+   ══════════════════════════════════════════════════════════════ */
+
+/* Base ml-* → margin-right. */
+html[dir="rtl"] .ml-1 {
+    margin-left: 0 !important;
+    margin-right: 0.25rem !important;
+}
+
+html[dir="rtl"] .ml-2 {
+    margin-left: 0 !important;
+    margin-right: 0.5rem !important;
+}
+
+html[dir="rtl"] .ml-3 {
+    margin-left: 0 !important;
+    margin-right: 0.75rem !important;
+}
+
+html[dir="rtl"] .ml-4 {
+    margin-left: 0 !important;
+    margin-right: 1rem !important;
+}
+
+/* Base mr-* → margin-left. */
+html[dir="rtl"] .mr-1 {
+    margin-right: 0 !important;
+    margin-left: 0.25rem !important;
+}
+
+html[dir="rtl"] .mr-2 {
+    margin-right: 0 !important;
+    margin-left: 0.5rem !important;
+}
+
+html[dir="rtl"] .mr-3 {
+    margin-right: 0 !important;
+    margin-left: 0.75rem !important;
+}
+
+html[dir="rtl"] .mr-4 {
+    margin-right: 0 !important;
+    margin-left: 1rem !important;
+}
+
+/* Responsive-prefixed variants Unfold emits (e.g. permission checkbox `lg:ml-2`). */
+html[dir="rtl"] .sm\:ml-1,
+html[dir="rtl"] .md\:ml-1,
+html[dir="rtl"] .lg\:ml-1,
+html[dir="rtl"] .xl\:ml-1 {
+    margin-left: 0 !important;
+    margin-right: 0.25rem !important;
+}
+
+html[dir="rtl"] .sm\:ml-2,
+html[dir="rtl"] .md\:ml-2,
+html[dir="rtl"] .lg\:ml-2,
+html[dir="rtl"] .xl\:ml-2 {
+    margin-left: 0 !important;
+    margin-right: 0.5rem !important;
+}
+
+html[dir="rtl"] .sm\:ml-3,
+html[dir="rtl"] .md\:ml-3,
+html[dir="rtl"] .lg\:ml-3,
+html[dir="rtl"] .xl\:ml-3 {
+    margin-left: 0 !important;
+    margin-right: 0.75rem !important;
+}
+
+html[dir="rtl"] .sm\:mr-1,
+html[dir="rtl"] .md\:mr-1,
+html[dir="rtl"] .lg\:mr-1,
+html[dir="rtl"] .xl\:mr-1 {
+    margin-right: 0 !important;
+    margin-left: 0.25rem !important;
+}
+
+html[dir="rtl"] .sm\:mr-2,
+html[dir="rtl"] .md\:mr-2,
+html[dir="rtl"] .lg\:mr-2,
+html[dir="rtl"] .xl\:mr-2 {
+    margin-right: 0 !important;
+    margin-left: 0.5rem !important;
+}
+
+html[dir="rtl"] .sm\:mr-3,
+html[dir="rtl"] .md\:mr-3,
+html[dir="rtl"] .lg\:mr-3,
+html[dir="rtl"] .xl\:mr-3 {
+    margin-right: 0 !important;
+    margin-left: 0.75rem !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   4. SIDEBAR & NAVIGATION
+   ══════════════════════════════════════════════════════════════ */
+
+/* Give every nav/sidebar link a consistent icon↔label gap. */
+html[dir="rtl"] nav a,
+html[dir="rtl"] aside a,
+html[dir="rtl"] [class*="sidebar"] a {
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.75rem !important;
+}
+
+/* Tighten the icon's own margin so the gap above is the only spacing. */
+html[dir="rtl"] nav a .material-symbols-outlined,
+html[dir="rtl"] nav a svg,
+html[dir="rtl"] aside a .material-symbols-outlined,
+html[dir="rtl"] aside a svg,
+html[dir="rtl"] [class*="sidebar"] .material-symbols-outlined,
+html[dir="rtl"] [class*="sidebar"] svg,
+html[dir="rtl"] a>.material-symbols-outlined,
+html[dir="rtl"] button>.material-symbols-outlined {
+    margin-left: 0.2rem !important;
+    margin-right: 0 !important;
+}
+
+/* Flip physical `ml-auto` to the logical (right) side so far-edge elements —
+   account-footer chevron, nav badges, changelist save button — land on the
+   left instead of leaving dead space there. */
+html[dir="rtl"] nav .ml-auto,
+html[dir="rtl"] aside .ml-auto,
+html[dir="rtl"] .ml-auto:has(> button[form="changelist-form"]) {
+    margin-left: 0 !important;
+    margin-right: auto !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   5. DASHBOARD
+   ══════════════════════════════════════════════════════════════ */
+
+/* Section titles (e.g. Accounts) and model names align to the right edge. */
+html[dir="rtl"] .unfold-dashboard-group-title,
+html[dir="rtl"] .unfold-dashboard-model-name {
+    text-align: right !important;
+    width: 100% !important;
+}
+
+/* Model rows (the white boxes): force items to the right side. */
+html[dir="rtl"] .unfold-dashboard-model-row,
+html[dir="rtl"] .unfold-dashboard-model-row>a {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: flex-start !important;
+    text-align: right !important;
+}
+
+/* Push the 'Add' (+) button to the far left. */
+html[dir="rtl"] .unfold-dashboard-model-row a svg,
+html[dir="rtl"] .unfold-dashboard-model-row a .material-symbols-outlined {
+    margin-right: auto !important;
+    margin-left: 0 !important;
+}
+
+/* Section title (table caption): align its right edge with the model rows.
+   Unfold's `mr-2` on it gets flipped by the generic mirroring in section 3,
+   which would otherwise leave the title sticking out. */
+html[dir="rtl"] caption:has(a.section) {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding-right: 0.75rem !important;
+    text-align: right !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   6. TABLES & CHANGELIST
+   ══════════════════════════════════════════════════════════════ */
+
+/* Right-align cell and label text. */
+html[dir="rtl"] th,
+html[dir="rtl"] td,
+html[dir="rtl"] label {
+    text-align: right !important;
+}
+
+/* Edge columns: Unfold gives the action-checkbox column a physical `pl-3`
+   (and the trailing column `pr-3`), which in RTL lands on the inner side and
+   leaves the checkbox flush against the table's right edge. Scoped to the
+   result table so select chevron padding (`pr-8`) is untouched. */
+html[dir="rtl"] #result_list .pl-3 {
+    padding-left: 0 !important;
+    padding-right: 0.75rem !important;
+}
+
+html[dir="rtl"] #result_list .pr-3 {
+    padding-right: 0 !important;
+    padding-left: 0.75rem !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   7. FORM FIELDS & WIDGETS
+   ══════════════════════════════════════════════════════════════ */
+
+/* Datetime widget: Unfold pins the calendar/clock icon to the input's right
+   edge, where it collides with RTL right-aligned text. Move it left and pad
+   that side. Not scoped to `.datetime` — plain DateFields render the same
+   shortcut without that wrapper. */
+html[dir="rtl"] .datetimeshortcuts {
+    left: 1px !important;
+    right: auto !important;
+}
+
+html[dir="rtl"] input.vDateField,
+html[dir="rtl"] input.vTimeField {
+    padding-left: 2.25rem !important;
+    padding-right: 0.75rem !important;
+}
+
+/* Timezone-warning badge: Unfold pins the ⚠ icon to the field group's right
+   corner, overlapping the RTL row title. Mirror it left — but inboard of the
+   calendar/clock shortcut above (~42px wide at left:1px) so they don't stack. */
+html[dir="rtl"] .timezonewarning {
+    left: 2.75rem !important;
+    right: auto !important;
+}
+
+/* Native select chevron: Unfold pins `expand_more` to the input's right edge
+   (`right-0 mr-[12px]`), overlapping the RTL option text. Move it left and pad
+   that side of the select. */
+html[dir="rtl"] .grow.relative>select~.material-symbols-outlined {
+    right: auto !important;
+    left: 0 !important;
+    margin-right: 0 !important;
+    margin-left: 12px !important;
+}
+
+html[dir="rtl"] .grow.relative>select {
+    padding-left: 2rem !important;
+    padding-right: 0.75rem !important;
+}
+
+/* Select2 (autocomplete) chevron: Unfold draws `expand_more` via
+   `.select2-selection__arrow::after`; select2's RTL pins it at `left:1px`,
+   ~1px from the edge while the native chevron above sits 12px in. Align both. */
+html[dir="rtl"] .select2-selection__arrow {
+    left: 0.75rem !important;
+    right: auto !important;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   8. INLINES (SORTABLE / COLLAPSIBLE)
+   ══════════════════════════════════════════════════════════════ */
+
+/* Sortable stacked inline header: Unfold authors it LTR as
+   [handle][title …mr-auto…][delete]. Under RTL the handle stays first in DOM
+   so it lands far right, and the title's `mr-auto` shoves it far left — the
+   handle then detaches from the title. Push the handle left (flex order) and
+   flip the title's auto margin so the title sits right-aligned. */
+html[dir="rtl"] h3:has(> .mr-auto)>.cursor-move,
+html[dir="rtl"] h3:has(> .mr-auto)>.cursor-not-allowed {
+    order: 1 !important;
+}
+
+html[dir="rtl"] h3:has(> .cursor-move)>.mr-auto,
+html[dir="rtl"] h3:has(> .cursor-not-allowed)>.mr-auto {
+    margin-right: 0 !important;
+    margin-left: auto !important;
+}
+
+/* Collapsible inline/section header: Unfold renders the expand chevron as
+   `summary::after` pinned right (`right:12px`), overlapping the RTL title.
+   Pin it left instead. */
+html[dir="rtl"] summary::after {
+    right: auto !important;
+    left: 12px !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   9. BUTTONS & ICONS
+   ══════════════════════════════════════════════════════════════ */
+
+/* Icon buttons: the leading icon uses a negative `-ml-*` to tuck against its
+   label. In RTL flex-row the icon sits on the right of the text, so the
+   negative margin must move to the right — otherwise it opens a gap and the
+   icon detaches toward the neighbouring control. */
+html[dir="rtl"] .inline-flex>.material-symbols-outlined.-ml-0\.5 {
+    margin-left: 0 !important;
+    margin-right: -0.125rem !important;
+}
+
+html[dir="rtl"] .inline-flex>.material-symbols-outlined.-ml-2 {
+    margin-left: 0 !important;
+    margin-right: -0.5rem !important;
+}
+
+/* Changelist action buttons (`tab_action.html`): icon is first in DOM, so in
+   RTL flex-row it lands on the right of the label. Push it to the left end via
+   flex order so the leading icon reads on the left like the rest of the UI. */
+html[dir="rtl"] li>a.flex.grow>.material-symbols-outlined {
+    order: 1 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   10. MISC CHROME (breadcrumb, tabs, accent bar)
+   ══════════════════════════════════════════════════════════════ */
+
+/* Breadcrumb separator (Material `chevron_right`) is forced LTR, so it points
+   the wrong way in RTL — mirror it horizontally to point toward the flow. */
+html[dir="rtl"] h1>.material-symbols-outlined {
+    transform: scaleX(-1);
+}
+
+/* Fieldset tabs (`fieldsets_tabs.html`): Unfold drops the LEFT border of the
+   first tab (`first:border-l-0`) so it sits flush against the container's left
+   edge. In RTL the first tab is on the right, so its flush (outer) edge is the
+   right one — flip which side is stripped, otherwise the active tab loses its
+   inner divider and shows a stray border against the container edge. */
+html[dir="rtl"] div.border-b>nav>a:first-child {
+    border-left-width: 1px !important;
+    border-right-width: 0 !important;
+}
+
+/* Primary accent bar: Unfold marks the active/expanded/selected row (changelist
+   and tabular inlines) with a 2px vertical `bg-primary-600` bar pinned to the
+   physical left edge (`left-0 w-0.5`). In RTL the leading edge is the right, so
+   move it there. */
+html[dir="rtl"] .absolute.bg-primary-600.left-0.w-0\.5 {
+    left: auto !important;
+    right: 0 !important;
+}

@@ -1,0 +1,381 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: fa\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "Add new item"
+msgstr "افزودن مورد جدید"
+
+msgid "Add row"
+msgstr "افزودن سطر"
+
+msgid "After you've created a user, you’ll be able to edit more user options."
+msgstr "پس از ایجاد کاربر، می‌توانید سایر تنظیمات او را ویرایش کنید."
+
+msgid "All applications"
+msgstr "همهٔ برنامه‌ها"
+
+msgid "Apply Filters"
+msgstr "اعمال فیلترها"
+
+msgid "Available shortcuts"
+msgstr "کلیدهای میان‌بر موجود"
+
+msgid "Below is a preview of data to be imported. If you are satisfied with the results, click 'Confirm import'"
+msgstr "پیش‌نمایش داده‌های واردشدنی در زیر آمده است. اگر نتیجه مورد تأیید است، «تأیید ورود داده» را بزنید."
+
+msgid "Bold"
+msgstr "درشت"
+
+msgid "Cancel"
+msgstr "لغو"
+
+msgid "Change History"
+msgstr "تاریخچهٔ تغییرات"
+
+msgid "Changelist shortcuts"
+msgstr "میان‌برهای فهرست"
+
+msgid "Click to cancel"
+msgstr "برای لغو کلیک کنید"
+
+msgid "Click to download"
+msgstr "برای دانلود کلیک کنید"
+
+msgid "Code"
+msgstr "کد"
+
+msgid "Collapse"
+msgstr "بستن"
+
+msgid "Command tool shortcuts"
+msgstr "میان‌برهای ابزار فرمان"
+
+msgid "Confirm import"
+msgstr "تأیید ورود داده"
+
+msgid "Create new record"
+msgstr "ایجاد رکورد جدید"
+
+msgid "Current file"
+msgstr "پروندهٔ فعلی"
+
+msgid "Dark"
+msgstr "تاریک"
+
+msgid "Dataset not found. No action performed."
+msgstr "مجموعه‌داده یافت نشد. عملی انجام نشد."
+
+msgid "Date"
+msgstr "تاریخ"
+
+msgid "Date from"
+msgstr "تاریخ از"
+
+msgid "Date to"
+msgstr "تاریخ تا"
+
+msgid "Default"
+msgstr "پیش‌فرض"
+
+msgid "Deleting %(class_name)s %(instance)s would require "
+msgstr "حذف %(class_name)s %(instance)s نیازمند "
+
+msgid "Disabled"
+msgstr "غیرفعال"
+
+msgid "Edit"
+msgstr "ویرایش"
+
+msgid "Enabled"
+msgstr "فعال"
+
+msgid "Enter an URL"
+msgstr "یک نشانی اینترنتی وارد کنید"
+
+msgid "Export"
+msgstr "برون‌بری"
+
+msgid "False"
+msgstr "نادرست"
+
+msgid "Filters"
+msgstr "فیلترها"
+
+msgid "From"
+msgstr "از"
+
+msgid "General"
+msgstr "عمومی"
+
+msgid "Global shortcuts"
+msgstr "میان‌برهای کلی"
+
+msgid "Go back"
+msgstr "بازگشت"
+
+msgid "Group"
+msgstr "گروه"
+
+msgid "Group permissions"
+msgstr "دسترسی‌های گروه"
+
+msgid "Heading"
+msgstr "سرنویس"
+
+msgid "Import"
+msgstr "درون‌ریزی"
+
+msgid "Indent decrease"
+msgstr "کاهش تورفتگی"
+
+msgid "Indent increase"
+msgstr "افزایش تورفتگی"
+
+msgid "Italic"
+msgstr "مورب"
+
+msgid "Items must be selected in order to perform actions on them. No items have been changed."
+msgstr "برای اجرای کنش‌ها باید موردی انتخاب شود. هیچ موردی تغییر نکرد."
+
+msgid "Light"
+msgstr "روشن"
+
+msgid "Line number"
+msgstr "شمارهٔ خط"
+
+msgid "Link"
+msgstr "پیوند"
+
+msgid "Log in again"
+msgstr "ورود دوباره"
+
+msgid "Manage group"
+msgstr "مدیریت گروه"
+
+msgid "Manage user"
+msgstr "مدیریت کاربر"
+
+msgid "Name"
+msgstr "نام"
+
+msgid "Navigate"
+msgstr "جابه‌جایی"
+
+msgid "New"
+msgstr "جدید"
+
+msgid "Next"
+msgstr "بعدی"
+
+msgid "No data"
+msgstr "داده‌ای نیست"
+
+msgid "No results found"
+msgstr "نتیجه‌ای یافت نشد"
+
+msgid "Non field specific"
+msgstr "مربوط به هیچ فیلد خاصی"
+
+msgid "Nothing matched your search"
+msgstr "چیزی با جست‌وجوی شما مطابقت نداشت"
+
+msgid "Object"
+msgstr "شیء"
+
+msgid "Object permissions"
+msgstr "دسترسی‌های شیء"
+
+msgid "Open command tool"
+msgstr "گشودن ابزار فرمان"
+
+msgid "Open selection"
+msgstr "گشودن مورد انتخاب‌شده"
+
+msgid "Open selection in new tab"
+msgstr "گشودن مورد انتخاب‌شده در زبانهٔ جدید"
+
+msgid "Open shortcuts list"
+msgstr "گشودن فهرست میان‌برها"
+
+msgid "Ordered list"
+msgstr "فهرست شماره‌دار"
+
+msgid "Paragraph"
+msgstr "بند"
+
+msgid "Password-based authentication"
+msgstr "احراز هویت مبتنی بر گذرواژه"
+
+msgid "Please correct the error below."
+msgid_plural "Please correct the errors below."
+msgstr[0] "لطفاً خطای زیر را برطرف کنید."
+msgstr[1] "لطفاً خطاهای زیر را برطرف کنید."
+
+msgid "Please correct these errors in your data where possible, then reupload it using the form above."
+msgstr "در صورت امکان این خطاها را در داده‌های خود اصلاح و سپس با فرم بالا دوباره بارگذاری کنید."
+
+msgid "Please enter your credentials to sign in."
+msgstr "لطفا جهت ورود، اطلاعات کاربری خود را وارد کنید."
+
+msgid "Please enter your old password, for security’s sake, and then enter your new password twice so we can verify you typed it in correctly."
+msgstr "برای رعایت امنیت، ابتدا گذرواژهٔ قبلی خود و سپس گذرواژهٔ جدید را دو بار وارد کنید تا از درستی آن مطمئن شویم."
+
+msgid "Previous"
+msgstr "قبلی"
+
+msgid "Quote"
+msgstr "نقل‌قول"
+
+msgid "Raw passwords are not stored, so there is no way to see the user’s password."
+msgstr "گذرواژه‌ها به‌صورت خام ذخیره نمی‌شوند، بنابراین راهی برای دیدن گذرواژهٔ کاربر وجود ندارد."
+
+msgid "Recent searches"
+msgstr "جست‌وجوهای اخیر"
+
+msgid "Record picture"
+msgstr "تصویر رکورد"
+
+msgid "Redo"
+msgstr "انجام دوباره"
+
+msgid "Reset filters"
+msgstr "بازنشانی فیلترها"
+
+msgid "Reset password"
+msgstr "بازنشانی گذرواژه"
+
+msgid "Reset to default"
+msgstr "بازگشت به پیش‌فرض"
+
+msgid "Return to site"
+msgstr "بازگشت به سایت"
+
+msgid "Revert"
+msgstr "بازگردانی"
+
+msgid "Row"
+msgstr "سطر"
+
+msgid "Run"
+msgstr "اجرا"
+
+msgid "Select"
+msgstr "انتخاب"
+
+msgid "Select action"
+msgstr "انتخاب کنش"
+
+msgid "Select action to run"
+msgstr "کنشی برای اجرا انتخاب کنید"
+
+msgid "Select currency"
+msgstr "انتخاب واحد پول"
+
+msgid "Select format"
+msgstr "انتخاب قالب"
+
+msgid "Select record"
+msgstr "انتخاب رکورد"
+
+msgid "Select value"
+msgstr "انتخاب مقدار"
+
+msgid "Set password"
+msgstr "تعیین گذرواژه"
+
+msgid "Skipped"
+msgstr "رد شد"
+
+msgid "Some rows failed to validate"
+msgstr "اعتبارسنجی برخی سطرها ناموفق بود"
+
+msgid "Strike"
+msgstr "خط‌خورده"
+
+msgid "Submit"
+msgstr "ثبت"
+
+msgid "System"
+msgstr "سیستم"
+
+msgid "Thanks for spending some quality time with the web site today."
+msgstr "از اینکه امروز وقت ارزشمند خود را صرف این تارنما کردید سپاسگزاریم."
+
+msgid "This exporter will export the following fields"
+msgstr "این برون‌بر، فیلدهای زیر را برون‌بری می‌کند"
+
+msgid "This exporter will export the following fields: "
+msgstr "این برون‌بر، فیلدهای زیر را برون‌بری می‌کند: "
+
+msgid "This importer will import the following fields: "
+msgstr "این درون‌ریز، فیلدهای زیر را درون‌ریزی می‌کند: "
+
+msgid "This item will be deleted."
+msgstr "این مورد حذف خواهد شد."
+
+msgid "This object doesn't have a change history."
+msgstr "این شیء تاریخچهٔ تغییرات ندارد."
+
+msgid "This page yielded into no results. Create a new item or reset your filters."
+msgstr "این صفحه نتیجه‌ای در بر نداشت. مورد جدیدی بسازید یا فیلترها را بازنشانی کنید."
+
+msgid "To"
+msgstr "تا"
+
+msgid "Toggle dark/light mode"
+msgstr "تغییر حالت روشن/تاریک"
+
+msgid "Toggle filter"
+msgstr "تغییر وضعیت فیلتر"
+
+msgid "Toggle password visibility"
+msgstr "نمایش یا پنهان کردن گذرواژه"
+
+msgid "Toggle sidebar"
+msgstr "باز و بستن نوار کناری"
+
+msgid "True"
+msgstr "درست"
+
+msgid "Type to search"
+msgstr "برای جستجو تایپ کنید"
+
+msgid "Underlined"
+msgstr "زیرخط‌دار"
+
+msgid "Undo"
+msgstr "واگرد"
+
+msgid "Unlink"
+msgstr "حذف پیوند"
+
+msgid "Unordered list"
+msgstr "فهرست نقطه‌ای"
+
+msgid "Update"
+msgstr "به‌روزرسانی"
+
+msgid "User permissions"
+msgstr "دسترسی‌های کاربر"
+
+msgid "Value"
+msgstr "مقدار"
+
+msgid "View traceback"
+msgstr "مشاهدهٔ رد خطا"
+
+#, python-format
+msgid "Welcome to %(name)s"
+msgstr "به %(name)s خوش آمدید"
+
+msgid "Whether the user will be able to authenticate using a password or not. If disabled, they may still be able to authenticate using other backends, such as Single Sign-On or LDAP."
+msgstr "اینکه کاربر بتواند با استفاده از گذرواژه احراز هویت کند یا خیر. در صورت غیرفعال بودن، ممکن است همچنان بتواند از طریق درگاه‌های دیگری مانند ورود یکپارچه (SSO) یا LDAP احراز هویت کند."
+
+msgid "You can not create nested object without parent"
+msgstr "بدون شیء والد نمی‌توانید شیء تودرتو بسازید"
+
+msgid "You have been successfully logged out from the administration"
+msgstr "با موفقیت از پنل مدیریت خارج شدید"

@@ -1,0 +1,93 @@
+{% extends 'unfold/layouts/unauthenticated.html' %}
+{% load i18n static unfold %}
+{% block extrastyle %}
+    {{ block.super }}
+    {{ form.media }}
+    <script nonce="{{ csp_nonce }}">
+        document.addEventListener("DOMContentLoaded", function() {
+            // Translate the "Return to site" link in the top bar.
+            const topBar = document.querySelector('.absolute.flex.flex-row.items-center.justify-between, .absolute.top-0');
+            if (topBar) {
+                const backLink = topBar.querySelector('a[href="/"]');
+                if (backLink) {
+                    backLink.innerHTML = `
+                        <span class="material-symbols-outlined text-lg">arrow_forward</span>
+                        <span class="ml-8">{% trans "Return to site" %}</span>
+                    `;
+                    backLink.classList.add('flex', 'items-center', 'gap-2');
+                }
+            }
+
+            const themeToggle = document.querySelector('a[x-on\\:click*="openTheme = !openTheme"]');
+            if (themeToggle) {
+                themeToggle.innerHTML = `
+              <span class="material-symbols-outlined" x-text="adminTheme == 'dark' &amp;&amp; 'dark_mode' || adminTheme == 'light' &amp;&amp; 'light_mode' || 'computer'"></span> `;
+            }
+
+            // Translate the theme-toggle option labels.
+            const themeOptions = document.querySelectorAll('a[x-on\\:click*="adminTheme"]');
+            themeOptions.forEach(opt => {
+                const icon = opt.querySelector('.material-symbols-outlined');
+                const textSpan = opt.querySelector('span.self-center');
+                opt.classList.add('gap-3');
+
+                if (icon && textSpan) {
+                    const iconName = icon.innerText.trim();
+                    if (iconName === 'light_mode') textSpan.innerText = '{% trans "Light" %}';
+                    else if (iconName === 'dark_mode') textSpan.innerText = '{% trans "Dark" %}';
+                    else if (iconName.includes('computer')) textSpan.innerText = '{% trans "System" %}';
+                }
+            });
+        });
+    </script>
+{% endblock %}
+{% block title %}
+    {{ title }} | {{ site_title }}
+{% endblock %}
+{% block content %}
+    <div class="mb-8 text-center">
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100">
+            {% blocktranslate trimmed with name=site_header|default:site_title %}Welcome to {{ name }}{% endblocktranslate %}
+        </h2>
+        <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+            {% trans "Please enter your credentials to sign in." %}
+        </p>
+    </div>
+    {% include "unfold/helpers/messages.html" %}
+    {% if form.errors or form.non_field_errors %}
+        <div class="flex flex-col gap-4 mb-8 *:mb-0">
+            {% include "unfold/helpers/messages/errornote.html" with errors=form.errors %}
+            {% include "unfold/helpers/messages/error.html" with errors=form.non_field_errors %}
+            {% if user.is_authenticated %}
+                {% blocktranslate trimmed asvar message %}
+                    You are authenticated as {{ username }}, but are not authorized to
+                    access this page. Would you like to login to a different account?
+                {% endblocktranslate %}
+                {% include "unfold/helpers/messages/error.html" with error=message %}
+            {% endif %}
+        </div>
+    {% endif %}
+    {% block login_before %}{% endblock %}
+    <form action="{{ app_path }}" method="post" id="login-form">
+        {% csrf_token %}
+        {% include "unfold/helpers/field.html" with field=form.username %}
+        {% include "unfold/helpers/field.html" with field=form.password %}
+        <div class="flex flex-col gap-3 mt-6">
+            {% component "unfold/components/button.html" with submit=1 variant="primary" class="submit-row w-full" %}
+            {% translate 'Log in' %} <span class="material-symbols-outlined relative right-0 transition-all group-hover:-right-1 text-sm">arrow_back</span>
+{% endcomponent %}
+{% url 'admin_password_reset' as password_reset_url %}
+{% url 'admin:admin_password_reset' as unfold_password_reset_url %}
+{% if password_reset_url or unfold_password_reset_url %}
+    {% component "unfold/components/button.html" with href=password_reset_url|default:unfold_password_reset_url variant="secondary" class="password-reset-link w-full" %}
+    {% translate 'Forgotten your password or username?' %}
+{% endcomponent %}
+{% endif %}
+</div>
+</form>
+{% block login_after %}
+    <div class="mt-8 text-center text-sm text-gray-500">
+        &copy; {% now "Y" %} {{ site_header|default:site_title }}
+    </div>
+{% endblock %}
+{% endblock %}

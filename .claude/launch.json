@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "demo-rtl",
+      "runtimeExecutable": ".venv/Scripts/python.exe",
+      "runtimeArgs": ["demo/manage.py", "runserver", "127.0.0.1:8752"],
+      "port": 8752
+    }
+  ]
+}

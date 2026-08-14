@@ -1,0 +1,71 @@
+# ── Package metadata ──────────────────────────────────────────
+[project]
+name = "django-unfold-rtl"
+version = "0.1.0"
+description = "Drop-in RTL/Persian support and sane defaults for the django-unfold admin."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [{ name = "Erfan Sadeghinezhad" }]
+keywords = ["admin", "django", "farsi", "persian", "rtl", "unfold"]
+
+# PyPI classifiers — see https://pypi.org/classifiers/
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Environment :: Web Environment",
+  "Framework :: Django",
+  "Framework :: Django :: 4.2",
+  "Framework :: Django :: 5.0",
+  "Framework :: Django :: 5.1",
+  "Framework :: Django :: 5.2",
+  "Framework :: Django :: 6.0",
+  "Framework :: Django :: 6.1",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Natural Language :: Persian",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+  "Topic :: Software Development :: Localization",
+  "Topic :: Software Development :: User Interfaces",
+]
+
+# Runtime dependencies (host project supplies its own Django settings).
+dependencies = [
+  "django>=4.2,<6.2",
+  "django-unfold>=0.20",
+]
+
+# Fill in once the repo is public; shown on the PyPI sidebar.
+[project.urls]
+Homepage = "https://github.com/erfuun/django-unfold-rtl"
+Repository = "https://github.com/erfuun/django-unfold-rtl"
+Issues = "https://github.com/erfuun/django-unfold-rtl/issues"
+
+# ── Build backend ─────────────────────────────────────────────
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+# ── Wheel contents ────────────────────────────────────────────
+[tool.hatch.build.targets.wheel]
+packages = ["src/unfold_rtl"]
+# Bundle the non-.py assets (fonts, CSS, JS, templates, locale) that live under
+# the package; hatchling ships *.py automatically but not these.
+artifacts = ["*.woff2", "*.css", "*.js", "*.html", "*.po", "*.mo"]
+
+# ── Source distribution contents ──────────────────────────────
+# The demo project, venv and build caches are dev-only — keep them out of the
+# published sdist so it carries just the package and its docs.
+[tool.hatch.build.targets.sdist]
+include = [
+  "src/unfold_rtl",
+  "README.md",
+  "pyproject.toml",
+  "LICENSE*",
+]

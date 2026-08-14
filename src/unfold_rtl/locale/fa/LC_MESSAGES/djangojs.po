@@ -1,0 +1,33 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: fa\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "(click to clear)"
+msgstr "(برای پاک کردن کلیک کنید)"
+
+#, python-format
+msgid "Choose %s by selecting them and then select the \"Choose\" arrow button."
+msgstr "%s را با انتخاب آن‌ها و سپس زدن دکمهٔ فلش «انتخاب» برگزینید."
+
+#, python-format
+msgid "Choose all %s"
+msgstr "انتخاب همهٔ %s"
+
+#, python-format
+msgid "Choose selected %s"
+msgstr "انتخاب %s برگزیده"
+
+#, python-format
+msgid "Remove %s by selecting them and then select the \"Remove\" arrow button."
+msgstr "%s را با انتخاب آن‌ها و سپس زدن دکمهٔ فلش «حذف» بردارید."
+
+#, python-format
+msgid "Remove all %s"
+msgstr "حذف همهٔ %s"
+
+#, python-format
+msgid "Remove selected %s"
+msgstr "حذف %s برگزیده"
