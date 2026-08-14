@@ -1,5 +1,5 @@
 /* ══════════════════════════════════════════════════════════════
-   django-unfold-rtl — runtime RTL fixes for Unfold admin
+   django-unfold-farsi — runtime RTL fixes for Unfold admin
    ──────────────────────────────────────────────────────────────
    Only fixes that CSS can't express (reading live layout width,
    mirroring inline styles Unfold sets from JS). Sections:

@@ -1,5 +1,5 @@
 /* ══════════════════════════════════════════════════════════════
-   django-unfold-rtl — RTL / Persian overrides for Unfold admin
+   django-unfold-farsi — RTL / Persian overrides for Unfold admin
    ──────────────────────────────────────────────────────────────
    Every rule is scoped to html[dir="rtl"], so LTR/English keeps
    Unfold's stock layout untouched. Sections, in order:

@@ -5,8 +5,8 @@ from __future__ import annotations
 from typing import Any, Callable
 
 # Asset paths shipped by this package (served under STATIC_URL once collectstatic runs).
-_STYLES = ["unfold_rtl/css/fonts.css", "unfold_rtl/css/unfold_custom.css"]
-_SCRIPTS = ["unfold_rtl/js/unfold_custom.js"]
+_STYLES = ["unfold_farsi/css/fonts.css", "unfold_farsi/css/unfold_custom.css"]
+_SCRIPTS = ["unfold_farsi/js/unfold_custom.js"]
 
 # Purple primary palette (Unfold expects "R G B" strings, no commas).
 _DEFAULT_COLORS = {
@@ -26,7 +26,7 @@ _DEFAULT_COLORS = {
 }
 
 
-def apply_unfold_rtl_defaults(
+def apply_unfold_farsi_defaults(
     unfold: dict[str, Any] | None = None,
     *,
     static: Callable[[str], str],
@@ -53,3 +53,8 @@ def apply_unfold_rtl_defaults(
     # the set_language view). Harmless with a single language configured.
     result.setdefault("SHOW_LANGUAGES", True)
     return result
+
+
+# Backwards compatibility alias
+apply_unfold_rtl_defaults = apply_unfold_farsi_defaults
+

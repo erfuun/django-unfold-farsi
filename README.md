@@ -1,9 +1,9 @@
-# django-unfold-rtl
+# django-unfold-farsi
 
 > Drop-in **RTL / Persian** support and sane defaults for the
 > [django-unfold](https://unfoldadmin.com/) admin.
 
-`django-unfold-rtl` turns the Unfold admin into a polished right-to-left,
+`django-unfold-farsi` turns the Unfold admin into a polished right-to-left,
 Persian-first experience with a single settings helper — no template forks, no
 manual CSS patching. It bundles the [Vazirmatn](https://github.com/rastikerdar/vazirmatn)
 font, a set of surgical `dir="rtl"` layout overrides, a translated login/logout
@@ -11,8 +11,8 @@ page, and language-forcing middleware. Everything is **i18n-driven**: RTL stylin
 activates only while the active language is bidirectional (`fa`, `ar`, `he`, …).
 Switch the admin to English and you get Unfold's stock LTR look untouched.
 
-[![PyPI version](https://img.shields.io/pypi/v/django-unfold-rtl.svg)](https://pypi.org/project/django-unfold-rtl/)
-[![Python versions](https://img.shields.io/pypi/pyversions/django-unfold-rtl.svg)](https://pypi.org/project/django-unfold-rtl/)
+[![PyPI version](https://img.shields.io/pypi/v/django-unfold-farsi.svg)](https://pypi.org/project/django-unfold-farsi/)
+[![Python versions](https://img.shields.io/pypi/pyversions/django-unfold-farsi.svg)](https://pypi.org/project/django-unfold-farsi/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](#license)
 
 ---
@@ -46,7 +46,7 @@ Switch the admin to English and you get Unfold's stock LTR look untouched.
 
 ## Features
 
-- **One-call setup** — `apply_unfold_rtl_defaults()` merges STYLES, SCRIPTS and a
+- **One-call setup** — `apply_unfold_farsi_defaults()` merges STYLES, SCRIPTS and a
   default color palette into your existing `UNFOLD` dict. Your keys always win.
 - **True RTL layout** — every override is scoped to `html[dir="rtl"]`, covering
   the sidebar, dashboard, changelist, forms, inlines, buttons, breadcrumbs,
@@ -76,19 +76,19 @@ Switch the admin to English and you get Unfold's stock LTR look untouched.
 ## Installation
 
 ```bash
-pip install django-unfold-rtl
+pip install django-unfold-farsi
 ```
 
 Using [uv](https://github.com/astral-sh/uv):
 
 ```bash
-uv add django-unfold-rtl
+uv add django-unfold-farsi
 ```
 
 From a local checkout (editable):
 
 ```bash
-uv add --editable ../django-unfold-rtl
+uv add --editable ../django-unfold-farsi
 ```
 
 `django` and `django-unfold` are pulled in automatically as dependencies.
@@ -102,10 +102,10 @@ The minimum to go from a stock Unfold admin to RTL/Persian:
 ```python
 # settings.py
 from django.templatetags.static import static
-from unfold_rtl.settings import apply_unfold_rtl_defaults
+from unfold_farsi.settings import apply_unfold_farsi_defaults
 
 INSTALLED_APPS = [
-    "unfold_rtl",   # before unfold
+    "unfold_farsi",   # before unfold
     "unfold",
     "django.contrib.admin",
     # ...
@@ -113,7 +113,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.contrib.sessions.middleware.SessionMiddleware",
-    "unfold_rtl.middleware.PersianDefaultLanguageMiddleware",  # before LocaleMiddleware
+    "unfold_farsi.middleware.PersianDefaultLanguageMiddleware",  # before LocaleMiddleware
     "django.middleware.locale.LocaleMiddleware",
     # ...
 ]
@@ -121,7 +121,7 @@ MIDDLEWARE = [
 LANGUAGE_CODE = "fa"
 USE_I18N = True
 
-UNFOLD = apply_unfold_rtl_defaults(
+UNFOLD = apply_unfold_farsi_defaults(
     {"SITE_TITLE": "پنل مدیریت", "SITE_HEADER": "سایت من"},
     static=static,
 )
@@ -140,12 +140,12 @@ That's it — open `/admin/` and you're in a Persian, right-to-left Unfold.
 
 ### 1. `INSTALLED_APPS` — order matters
 
-Place `unfold_rtl` **before** `unfold` so its templates and static assets take
+Place `unfold_farsi` **before** `unfold` so its templates and static assets take
 precedence over Unfold's originals.
 
 ```python
 INSTALLED_APPS = [
-    "unfold_rtl",   # must precede unfold so its template/static overrides win
+    "unfold_farsi",   # must precede unfold so its template/static overrides win
     "unfold",
     "unfold.contrib.filters",
     "unfold.contrib.forms",
@@ -160,7 +160,7 @@ INSTALLED_APPS = [
 ```python
 MIDDLEWARE = [
     "django.contrib.sessions.middleware.SessionMiddleware",
-    "unfold_rtl.middleware.PersianDefaultLanguageMiddleware",  # before LocaleMiddleware
+    "unfold_farsi.middleware.PersianDefaultLanguageMiddleware",  # before LocaleMiddleware
     "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
     # ...
@@ -179,9 +179,9 @@ Wrap your existing `UNFOLD` dict with the helper:
 
 ```python
 from django.templatetags.static import static
-from unfold_rtl.settings import apply_unfold_rtl_defaults
+from unfold_farsi.settings import apply_unfold_farsi_defaults
 
-UNFOLD = apply_unfold_rtl_defaults(
+UNFOLD = apply_unfold_farsi_defaults(
     {
         "SITE_TITLE": "پنل مدیریت",
         "SITE_HEADER": "سایت من",
@@ -264,9 +264,10 @@ only on the active language.
 
 ## API reference
 
-### `apply_unfold_rtl_defaults(unfold=None, *, static)`
+### `apply_unfold_farsi_defaults(unfold=None, *, static)`
 
 Merge this package's RTL/Persian defaults into an `UNFOLD` settings dict.
+(Also aliased as `apply_unfold_rtl_defaults` for backwards compatibility).
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
@@ -278,7 +279,7 @@ Merge this package's RTL/Persian defaults into an `UNFOLD` settings dict.
 
 ### `PersianDefaultLanguageMiddleware`
 
-`unfold_rtl.middleware.PersianDefaultLanguageMiddleware` — drops the request's
+`unfold_farsi.middleware.PersianDefaultLanguageMiddleware` — drops the request's
 `Accept-Language` header so language detection falls back to `LANGUAGE_CODE`.
 Must be listed before `django.middleware.locale.LocaleMiddleware`.
 
@@ -291,9 +292,9 @@ wiring mistakes:
 
 | ID | Warning |
 |----|---------|
-| `unfold_rtl.W001` | `unfold_rtl` is listed **after** `unfold` in `INSTALLED_APPS`. |
-| `unfold_rtl.W002` | The middleware is not installed at all. |
-| `unfold_rtl.W003` | The middleware runs **after** `LocaleMiddleware`. |
+| `unfold_farsi.W001` | `unfold_farsi` is listed **after** `unfold` in `INSTALLED_APPS`. |
+| `unfold_farsi.W002` | The middleware is not installed at all. |
+| `unfold_farsi.W003` | The middleware runs **after** `LocaleMiddleware`. |
 
 ---
 
@@ -301,15 +302,15 @@ wiring mistakes:
 
 | Path | Purpose |
 |------|---------|
-| `static/unfold_rtl/css/fonts.css` | Self-hosted Vazirmatn (`@font-face`), RTL only |
-| `static/unfold_rtl/css/unfold_custom.css` | `html[dir="rtl"]` layout/typography overrides |
-| `static/unfold_rtl/js/unfold_custom.js` | Runtime RTL fixups (RTL only) |
-| `static/unfold_rtl/fonts/vazirmatn/*.woff2` | Subsetted font files |
+| `static/unfold_farsi/css/fonts.css` | Self-hosted Vazirmatn (`@font-face`), RTL only |
+| `static/unfold_farsi/css/unfold_custom.css` | `html[dir="rtl"]` layout/typography overrides |
+| `static/unfold_farsi/js/unfold_custom.js` | Runtime RTL fixups (RTL only) |
+| `static/unfold_farsi/fonts/vazirmatn/*.woff2` | Subsetted font files |
 | `templates/admin/login.html` | Translatable Unfold login page |
 | `templates/registration/logged_out.html` | Translatable Unfold logout page |
 | `locale/fa/LC_MESSAGES/` | Persian catalog for the strings above + Unfold UI |
-| `unfold_rtl.middleware.PersianDefaultLanguageMiddleware` | Persian-default, switchable |
-| `unfold_rtl.settings.apply_unfold_rtl_defaults` | The wiring helper |
+| `unfold_farsi.middleware.PersianDefaultLanguageMiddleware` | Persian-default, switchable |
+| `unfold_farsi.settings.apply_unfold_farsi_defaults` | The wiring helper |
 
 ---
 
@@ -370,7 +371,7 @@ issues it fixes.
 
 ```bash
 git clone <your-fork-url>
-cd django-unfold-rtl
+cd django-unfold-farsi
 uv sync                       # or: pip install -e .
 
 # Run the bundled demo project

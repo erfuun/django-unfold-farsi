@@ -4,13 +4,17 @@ from django.apps import AppConfig
 from django.core.checks import Warning, register
 
 
-class UnfoldRtlConfig(AppConfig):
-    name = "unfold_rtl"
-    verbose_name = "Unfold RTL / Persian"
+class UnfoldFarsiConfig(AppConfig):
+    name = "unfold_farsi"
+    verbose_name = "Unfold Farsi / Persian"
 
     def ready(self) -> None:
         register(_check_wiring)
         _register_locale_path()
+
+
+# Backwards compatibility alias
+UnfoldRtlConfig = UnfoldFarsiConfig
 
 
 def _register_locale_path() -> None:
@@ -36,33 +40,34 @@ def _check_wiring(app_configs, **kwargs):
     warnings = []
     apps = list(getattr(settings, "INSTALLED_APPS", []))
 
-    # unfold_rtl must precede unfold so its templates/static override Unfold's.
-    if "unfold_rtl" in apps and "unfold" in apps:
-        if apps.index("unfold_rtl") > apps.index("unfold"):
+    # unfold_farsi must precede unfold so its templates/static override Unfold's.
+    if "unfold_farsi" in apps and "unfold" in apps:
+        if apps.index("unfold_farsi") > apps.index("unfold"):
             warnings.append(
                 Warning(
-                    "'unfold_rtl' should come before 'unfold' in INSTALLED_APPS so its "
+                    "'unfold_farsi' should come before 'unfold' in INSTALLED_APPS so its "
                     "template and static overrides take precedence.",
-                    id="unfold_rtl.W001",
+                    id="unfold_farsi.W001",
                 )
             )
 
     mw = list(getattr(settings, "MIDDLEWARE", []))
-    default = "unfold_rtl.middleware.PersianDefaultLanguageMiddleware"
+    default = "unfold_farsi.middleware.PersianDefaultLanguageMiddleware"
     locale = "django.middleware.locale.LocaleMiddleware"
     if default not in mw:
         warnings.append(
             Warning(
-                "unfold_rtl middleware is not installed. Add "
+                "unfold_farsi middleware is not installed. Add "
                 f"'{default}' before '{locale}' in MIDDLEWARE.",
-                id="unfold_rtl.W002",
+                id="unfold_farsi.W002",
             )
         )
     elif locale in mw and mw.index(default) > mw.index(locale):
         warnings.append(
             Warning(
                 f"'{default}' should run before '{locale}'.",
-                id="unfold_rtl.W003",
+                id="unfold_farsi.W003",
             )
         )
     return warnings
+
