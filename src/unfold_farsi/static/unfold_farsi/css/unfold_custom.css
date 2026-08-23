@@ -251,6 +251,21 @@ html[dir="rtl"] #result_list .pr-3 {
     padding-left: 0.75rem !important;
 }
 
+/* Mobile card layout: below `lg` each cell is a flex row with the column label
+   as a `::before` pseudo (`data-label`) that comes first in DOM, so in RTL it
+   lands on the right and the value on the left. Push the label to the left end
+   (flex order) so the value reads right-aligned. Auto-off at `lg`, where the
+   cells become `table-cell` and the label is hidden. */
+html[dir="rtl"] #result_list td.flex {
+    text-align: right !important;
+}
+
+html[dir="rtl"] #result_list td.flex::before {
+    order: 1 !important;
+    margin-right: auto !important;
+    margin-left: 0 !important;
+}
+
 
 /* ══════════════════════════════════════════════════════════════
    7. FORM FIELDS & WIDGETS

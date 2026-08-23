@@ -1,7 +1,7 @@
 # ── Package metadata ──────────────────────────────────────────
 [project]
 name = "django-unfold-farsi"
-version = "0.1.0"
+version = "0.1.1"
 description = "Drop-in RTL/Persian support and sane defaults for the django-unfold admin."
 readme = "README.md"
 requires-python = ">=3.10"
