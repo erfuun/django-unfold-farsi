@@ -277,6 +277,9 @@ msgstr "انتخاب واحد پول"
 msgid "Select format"
 msgstr "انتخاب قالب"
 
+msgid "Select all rows"
+msgstr "انتخاب همهٔ ردیف‌ها"
+
 msgid "Select record"
 msgstr "انتخاب رکورد"
 

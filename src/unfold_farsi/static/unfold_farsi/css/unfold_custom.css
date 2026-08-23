@@ -251,19 +251,34 @@ html[dir="rtl"] #result_list .pr-3 {
     padding-left: 0.75rem !important;
 }
 
+/* Mobile header: "Select all rows" on the right, checkbox on the left */
+html[dir="rtl"] #result_list thead th label {
+    display: flex !important;
+    width: 100% !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+}
+
+html[dir="rtl"] #result_list thead th label span {
+    order: -1 !important;
+}
+
 /* Mobile card layout: below `lg` each cell is a flex row with the column label
    as a `::before` pseudo (`data-label`) that comes first in DOM, so in RTL it
-   lands on the right and the value on the left. Push the label to the left end
-   (flex order) so the value reads right-aligned. Auto-off at `lg`, where the
-   cells become `table-cell` and the label is hidden. */
+   lands on the right and the value on the left. Label (::before) stays on the
+   right (order: 0), and margin-left: auto pushes the value to the left. Scoped
+   to BOTH th.flex and td.flex (Unfold renders the first linked column as `<th>`).
+   Auto-off at `lg`, where the cells become `table-cell` and the label is hidden. */
+html[dir="rtl"] #result_list th.flex,
 html[dir="rtl"] #result_list td.flex {
     text-align: right !important;
 }
 
+html[dir="rtl"] #result_list th.flex::before,
 html[dir="rtl"] #result_list td.flex::before {
-    order: 1 !important;
-    margin-right: auto !important;
-    margin-left: 0 !important;
+    order: 0 !important;
+    margin-right: 0 !important;
+    margin-left: auto !important;
 }
 
 
