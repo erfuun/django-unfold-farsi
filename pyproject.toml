@@ -1,13 +1,13 @@
 # ── Package metadata ──────────────────────────────────────────
 [project]
 name = "django-unfold-farsi"
-version = "0.1.2"
+version = "0.2.0"
 description = "Drop-in RTL/Persian support and sane defaults for the django-unfold admin."
 readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"
 authors = [{ name = "Erfan Sadeghinezhad" }]
-keywords = ["admin", "django", "farsi", "persian", "rtl", "unfold"]
+keywords = ["admin", "django", "farsi", "persian", "rtl", "unfold", "jalali", "shamsi", "datepicker", "timepicker"]
 
 # PyPI classifiers — see https://pypi.org/classifiers/
 classifiers = [
@@ -39,6 +39,7 @@ classifiers = [
 dependencies = [
   "django>=4.2,<6.2",
   "django-unfold>=0.20",
+  "jdatetime>=5.0.0",
 ]
 
 # Fill in once the repo is public; shown on the PyPI sidebar.

@@ -6,7 +6,10 @@ from typing import Any, Callable
 
 # Asset paths shipped by this package (served under STATIC_URL once collectstatic runs).
 _STYLES = ["unfold_farsi/css/fonts.css", "unfold_farsi/css/unfold_custom.css"]
-_SCRIPTS = ["unfold_farsi/js/unfold_custom.js"]
+_SCRIPTS = [
+    "unfold_farsi/js/unfold_custom.js",
+    "unfold_farsi/js/jalali-datepicker.js",
+]
 
 # Purple primary palette (Unfold expects "R G B" strings, no commas).
 _DEFAULT_COLORS = {

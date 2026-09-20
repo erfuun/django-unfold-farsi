@@ -29,6 +29,7 @@ Switch the admin to English and you get Unfold's stock LTR look untouched.
   - [3. `UNFOLD`](#3-unfold--apply-the-defaults)
   - [4. Language switching](#4-language-switching-optional)
   - [5. Collect static](#5-collect-static)
+- [Jalali Date & Time](#jalali-date--time)
 - [How it works](#how-it-works)
 - [API reference](#api-reference)
 - [System checks](#system-checks)
@@ -48,9 +49,20 @@ Switch the admin to English and you get Unfold's stock LTR look untouched.
 
 - **One-call setup** — `apply_unfold_farsi_defaults()` merges STYLES, SCRIPTS and a
   default color palette into your existing `UNFOLD` dict. Your keys always win.
+- **Modern Jalali Date & Time pickers** — zero-dependency standalone popup calendar
+  and dual-column timepicker (`jalali-datepicker.js`), dark/light mode aware, suppressing
+  broken Django `DateTimeShortcuts`.
+- **Automatic Jalali ModelAdmin & Inlines** — `unfold_farsi.admin.ModelAdmin`,
+  `StackedInline`, `TabularInline`, or `JalaliModelAdminMixin` dynamically formats
+  changelist dates with Persian digits while preserving column sorting, and maps
+  form fields to modern Jalali pickers.
+- **Jalali Date List Filter** — `JalaliDateListFilter` provides Solar Hijri period
+  filtering (`امروز`, `۷ روز گذشته`, `این ماه (جلالی)`, `امسال (جلالی)`).
+- **Template tags & utilities** — `{% jdate %}`, `{% jdatetime %}`, `{% jtime %}`,
+  `{% jrelative %}`, and digit converters with Persian and Latin numeral support.
 - **True RTL layout** — every override is scoped to `html[dir="rtl"]`, covering
   the sidebar, dashboard, changelist, forms, inlines, buttons, breadcrumbs,
-  tabs, date/select/select2 widgets and the bulk-actions bar.
+  tabs, date/select/select2 autocomplete widgets and the bulk-actions bar.
 - **Self-hosted Vazirmatn font** — no external CDN; ships subsetted `woff2`
   files (arabic / latin / latin-ext) and applies them in RTL only.
 - **Persian-first, still switchable** — middleware makes Persian the default
@@ -70,6 +82,7 @@ Switch the admin to English and you get Unfold's stock LTR look untouched.
 | Python     | 3.10 – 3.14        |
 | Django     | 4.2 LTS – 6.1      |
 | django-unfold | 0.20+           |
+| jdatetime  | 5.0+               |
 
 ---
 
@@ -235,6 +248,113 @@ default font.
 
 ```bash
 python manage.py collectstatic --noinput
+```
+
+---
+
+## Jalali Date & Time
+
+`django-unfold-farsi` ships a complete Jalali (Solar Hijri) calendar and modern time system that seamlessly integrates into Django Unfold.
+
+### 1. ModelAdmin & Inlines
+
+Use `unfold_farsi.admin.ModelAdmin` instead of `unfold.admin.ModelAdmin`:
+
+```python
+from django.contrib import admin
+from unfold_farsi.admin import ModelAdmin, StackedInline, TabularInline, JalaliDateListFilter
+from .models import Order, OrderItem
+
+class OrderItemInline(TabularInline):
+    model = OrderItem
+
+@admin.register(Order)
+class OrderAdmin(ModelAdmin):
+    list_display = ["id", "customer", "created_at", "delivery_date"]
+    list_filter = [("created_at", JalaliDateListFilter)]
+    inlines = [OrderItemInline]
+```
+
+- **Automatic changelist formatting**: `DateField` and `DateTimeField` columns in `list_display` are dynamically formatted as Jalali dates (`۱۴۰۳/۰۶/۲۵`) while preserving sorting (`admin_order_field`) and column titles.
+- **Form date & time pickers**: Form inputs for `DateField`, `TimeField`, and `DateTimeField` automatically render with the self-contained Jalali calendar and compact dual-column timepicker.
+- **Jalali period filter**: `JalaliDateListFilter` provides quick filters (`امروز`, `۷ روز گذشته`, `این ماه (جلالی)`, `امسال (جلالی)`).
+
+If you have an existing custom `ModelAdmin` base class, simply mix in `JalaliModelAdminMixin`:
+
+```python
+from unfold_farsi.admin import JalaliModelAdminMixin
+from unfold.admin import ModelAdmin as BaseModelAdmin
+
+class MyCustomAdmin(JalaliModelAdminMixin, BaseModelAdmin):
+    pass
+```
+
+### 2. Standalone Form Widgets & Fields
+
+You can use the Jalali widgets and fields in any standard Django `Form` or `ModelForm`:
+
+```python
+from django import forms
+from unfold_farsi.widgets import (
+    JalaliDateField,
+    JalaliDateTimeField,
+    JalaliTimeField,
+    JalaliDateWidget,
+    JalaliTimeWidget,
+    JalaliSplitDateTimeWidget,
+)
+
+class EventForm(forms.Form):
+    start_date = JalaliDateField(widget=JalaliDateWidget)
+    start_time = JalaliTimeField(widget=JalaliTimeWidget)
+    created_at = JalaliDateTimeField(widget=JalaliSplitDateTimeWidget)
+```
+
+Inputs accept Persian or Latin digits (`۱۴۰۳/۰۶/۲۵` or `1403/06/25`) and transparently convert back to Python `datetime.date`, `datetime.time`, and timezone-aware `datetime.datetime` objects.
+
+### 3. Template Tags & Filters
+
+Load `jalali_tags` in any Django template:
+
+```html
+{% load jalali_tags %}
+
+<!-- Format date/datetime -->
+{{ order.created_at|jdate }}                   <!-- ۱۴۰۳/۰۶/۲۵ -->
+{{ order.created_at|jdate:"j F Y" }}           <!-- ۲۵ شهریور ۱۴۰۳ -->
+{{ order.created_at|jdate:"Y/m/d:latin" }}     <!-- 1403/06/25 -->
+
+<!-- Format datetime with time -->
+{{ order.created_at|jdatetime }}               <!-- ۱۴۰۳/۰۶/۲۵ ۱۴:۳۰ -->
+{{ order.created_at|jdatetime:"j F · H:i" }}   <!-- ۲۵ شهریور · ۱۴:۳۰ -->
+
+<!-- Format time -->
+{{ order.created_at|jtime }}                   <!-- ۱۴:۳۰ -->
+
+<!-- Natural Persian relative time -->
+{{ order.created_at|jrelative }}               <!-- ۵ دقیقه پیش / دیروز / ۳ ماه پیش -->
+
+<!-- Digit converters -->
+{{ "Order #1234"|persian_digits }}            <!-- Order #۱۲۳۴ -->
+{{ "۱۲۳۴"|ascii_digits }}                      <!-- 1234 -->
+```
+
+### 4. Utility Functions
+
+Direct calendar conversion and formatting functions:
+
+```python
+from unfold_farsi import format_jalali, to_jalali, parse_jalali, jalali_relative_time
+
+# Formatting
+format_jalali(datetime.date.today(), "Y/m/d")  # "۱۴۰۳/۰۶/۲۵"
+format_jalali(datetime.date.today(), latin=True)  # "1403/06/25"
+
+# Parsing
+parse_jalali("۱۴۰۳/۰۶/۲۵")  # datetime.date(2024, 9, 15)
+
+# Relative time
+jalali_relative_time(past_datetime)  # "۲ ساعت پیش"
 ```
 
 ---

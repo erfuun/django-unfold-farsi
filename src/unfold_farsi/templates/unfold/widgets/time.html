@@ -1,0 +1,18 @@
+<div class="flex flex-col max-w-2xl min-w-56 relative w-full">
+  <div class="relative flex items-center w-full">
+    {% include "django/forms/widgets/input.html" %}
+    <button type="button"
+            data-timepicker-toggle
+            class="absolute end-0 top-0 bottom-0 flex items-center justify-center px-3 text-base-400 hover:text-primary-600 dark:hover:text-primary-400 transition cursor-pointer"
+            title="انتخاب زمان"
+            tabindex="-1">
+      <svg class="w-5 h-5 pointer-events-none"
+           fill="none"
+           viewBox="0 0 24 24"
+           stroke="currentColor"
+           stroke-width="1.75">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+    </button>
+  </div>
+</div>

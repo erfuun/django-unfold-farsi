@@ -262,6 +262,9 @@ msgstr "سطر"
 msgid "Run"
 msgstr "اجرا"
 
+msgid "Search apps and models..."
+msgstr "جست‌وجوی برنامه‌ها و مدل‌ها..."
+
 msgid "Select"
 msgstr "انتخاب"
 
